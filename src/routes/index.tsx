@@ -26,130 +26,339 @@ function HomePage() {
     { icon: '🤝', title: 'Soporte 24/7', description: 'Atención personalizada' },
   ]
 
-  // Reusable styles
-  const styles = {
-    section: {
-      padding: '3rem 1rem',
-      maxWidth: '1200px',
-      margin: '0 auto',
-    },
-    sectionHeading: {
-      fontSize: '2.5em',
-      textAlign: 'center' as const,
-      marginBottom: '2rem',
-      marginTop: 0,
-    },
-    grid: {
-      display: 'flex',
-      flexWrap: 'wrap' as const,
-      gap: '1.5rem',
-      justifyContent: 'center',
-    },
-    card: {
-      border: '1px solid #ccc',
-      borderRadius: '8px',
-      padding: '1.5rem',
-      flex: '1 1 250px',
-      maxWidth: '280px',
-      textAlign: 'center' as const,
-      transition: 'transform 0.2s, border-color 0.2s',
-      cursor: 'pointer',
-    },
-    button: {
-      display: 'inline-block',
-      padding: '0.8em 2em',
-      fontSize: '1.1em',
-      fontWeight: 500,
-      color: '#fff',
-      backgroundColor: '#646cff',
-      border: 'none',
-      borderRadius: '8px',
-      textDecoration: 'none',
-      cursor: 'pointer',
-      transition: 'background-color 0.25s',
-    },
-  }
-
   return (
-    <div>
-      <HeroSection styles={styles} />
-      <CategoriesSection categories={categories} styles={styles} />
-      <FeaturedProductsSection products={featuredProducts} styles={styles} />
-      <BenefitsSection benefits={benefits} styles={styles} />
-      <CTASection styles={styles} />
+    <div style={{
+      backgroundColor: '#0a0e1a',
+      minHeight: '100vh',
+      color: '#fff',
+      overflow: 'hidden'
+    }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+
+        @keyframes neonGlow {
+          0%, 100% {
+            text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88, 0 0 30px #00ff88;
+          }
+          50% {
+            text-shadow: 0 0 20px #00ff88, 0 0 40px #00ff88, 0 0 60px #00ff88;
+          }
+        }
+
+        .animate-in-1 { animation: fadeInUp 0.8s ease-out 0.2s both; }
+        .animate-in-2 { animation: fadeInUp 0.8s ease-out 0.4s both; }
+        .animate-in-3 { animation: fadeInUp 0.8s ease-out 0.6s both; }
+        .animate-in-4 { animation: fadeInUp 0.8s ease-out 0.8s both; }
+      `}</style>
+
+      <HeroSection />
+      <CategoriesSection categories={categories} />
+      <FeaturedProductsSection products={featuredProducts} />
+      <BenefitsSection benefits={benefits} />
+      <CTASection />
     </div>
   )
 }
 
-function HeroSection({ styles }: { styles: any }) {
+function HeroSection() {
   return (
     <div
       style={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        padding: '5rem 1rem',
+        position: 'relative',
+        padding: '8rem 2rem 6rem',
         textAlign: 'center',
-        color: '#fff',
+        overflow: 'hidden',
+        background: 'radial-gradient(ellipse at top, #1a2344 0%, #0a0e1a 60%)',
       }}
     >
-      <h1 style={{ fontSize: '3em', margin: '0 0 1rem 0', lineHeight: '1.2' }}>
-        Tu Tienda de Artículos Deportivos de Confianza
-      </h1>
-      <p style={{ fontSize: '1.3em', margin: '0 0 2rem 0', opacity: 0.95 }}>
-        Encuentra el equipo perfecto para llevar tu rendimiento al siguiente nivel
-      </p>
-      <Link
-        to="/productos"
-        style={{
-          ...styles.button,
-          fontSize: '1.2em',
-          padding: '1em 2.5em',
-        }}
-        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#535bf2')}
-        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#646cff')}
-      >
-        Ver Catálogo
-      </Link>
+      <div style={{
+        position: 'absolute',
+        top: '10%',
+        left: '10%',
+        width: '400px',
+        height: '400px',
+        background: 'radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(80px)',
+        animation: 'float 8s ease-in-out infinite',
+      }} />
+      <div style={{
+        position: 'absolute',
+        bottom: '10%',
+        right: '10%',
+        width: '500px',
+        height: '500px',
+        background: 'radial-gradient(circle, rgba(0, 255, 136, 0.15) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(80px)',
+        animation: 'float 10s ease-in-out infinite',
+        animationDelay: '1s',
+      }} />
+
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{
+          display: 'inline-block',
+          padding: '0.5rem 1.5rem',
+          background: 'linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%)',
+          borderRadius: '50px',
+          fontSize: '0.9rem',
+          fontFamily: 'DM Sans, sans-serif',
+          fontWeight: 700,
+          letterSpacing: '1px',
+          marginBottom: '2rem',
+          textTransform: 'uppercase',
+          boxShadow: '0 4px 20px rgba(255, 107, 53, 0.4)',
+        }}>
+          Equipamiento Premium
+        </div>
+
+        <h1 style={{
+          fontFamily: 'Bebas Neue, sans-serif',
+          fontSize: 'clamp(3rem, 10vw, 7rem)',
+          lineHeight: '1',
+          margin: '0 0 1.5rem 0',
+          letterSpacing: '2px',
+          background: 'linear-gradient(135deg, #fff 0%, #00ff88 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          animation: 'neonGlow 3s ease-in-out infinite',
+        }}>
+          LIBERA TU<br/>POTENCIAL
+        </h1>
+
+        <p style={{
+          fontFamily: 'DM Sans, sans-serif',
+          fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+          margin: '0 auto 3rem',
+          maxWidth: '600px',
+          color: 'rgba(255, 255, 255, 0.8)',
+          lineHeight: '1.6',
+        }}>
+          Equipamiento deportivo de élite para atletas que no aceptan límites.
+          Diseñado para el rendimiento máximo.
+        </p>
+
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Link
+            to="/productos"
+            style={{
+              fontFamily: 'DM Sans, sans-serif',
+              display: 'inline-block',
+              padding: '1.2rem 3rem',
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              color: '#0a0e1a',
+              background: 'linear-gradient(135deg, #00ff88 0%, #00cc6a 100%)',
+              border: 'none',
+              borderRadius: '50px',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 8px 30px rgba(0, 255, 136, 0.4)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 255, 136, 0.6)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 8px 30px rgba(0, 255, 136, 0.4)'
+            }}
+          >
+            Explorar Catálogo
+          </Link>
+
+          <a
+            href="#beneficios"
+            style={{
+              fontFamily: 'DM Sans, sans-serif',
+              display: 'inline-block',
+              padding: '1.2rem 3rem',
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              color: '#fff',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '2px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '50px',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              backdropFilter: 'blur(10px)',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)'
+            }}
+          >
+            Descubre Más
+          </a>
+        </div>
+      </div>
+
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '100px',
+        background: 'linear-gradient(to top, #0a0e1a, transparent)',
+      }} />
     </div>
   )
 }
 
 function CategoriesSection({
   categories,
-  styles,
 }: {
   categories: Array<{ id: string; name: string; description: string; icon: string }>
-  styles: any
 }) {
   return (
-    <section style={styles.section}>
-      <h2 style={styles.sectionHeading}>Explora por Categoría</h2>
-      <div style={styles.grid}>
-        {categories.map((category) => (
+    <section style={{
+      padding: '6rem 2rem',
+      maxWidth: '1400px',
+      margin: '0 auto',
+      position: 'relative',
+    }}>
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '4rem',
+      }}>
+        <h2 style={{
+          fontFamily: 'Bebas Neue, sans-serif',
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          margin: '0 0 1rem 0',
+          letterSpacing: '2px',
+          color: '#fff',
+        }}>
+          EXPLORA POR DEPORTE
+        </h2>
+        <div style={{
+          width: '80px',
+          height: '4px',
+          background: 'linear-gradient(90deg, #ff6b35 0%, #00ff88 100%)',
+          margin: '0 auto',
+        }} />
+      </div>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '2rem',
+      }}>
+        {categories.map((category, index) => (
           <Link
             key={category.id}
             to="/productos"
             style={{ textDecoration: 'none', color: 'inherit' }}
+            className={`animate-in-${(index % 4) + 1}`}
           >
             <div
-              style={styles.card}
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '20px',
+                padding: '2.5rem 2rem',
+                textAlign: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.4s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                backdropFilter: 'blur(10px)',
+              }}
               onMouseOver={(e) => {
-                e.currentTarget.style.transform = 'translateY(-5px)'
-                e.currentTarget.style.borderColor = '#646cff'
+                e.currentTarget.style.transform = 'translateY(-10px) scale(1.02)'
+                e.currentTarget.style.borderColor = '#00ff88'
+                e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 255, 136, 0.3)'
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.borderColor = '#ccc'
+                e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+                e.currentTarget.style.boxShadow = 'none'
               }}
             >
-              <div style={{ fontSize: '4em', margin: '0 0 0.5rem 0' }}>
+              <div style={{
+                position: 'absolute',
+                top: '-50%',
+                right: '-50%',
+                width: '200%',
+                height: '200%',
+                background: 'radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%)',
+                opacity: 0,
+                transition: 'opacity 0.4s ease',
+              }}
+                onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
+                onMouseOut={(e) => e.currentTarget.style.opacity = '0'}
+              />
+
+              <div style={{
+                fontSize: '5rem',
+                margin: '0 0 1.5rem 0',
+                filter: 'drop-shadow(0 4px 10px rgba(0, 255, 136, 0.3))',
+              }}>
                 {category.icon}
               </div>
-              <h3 style={{ fontSize: '1.5em', margin: '0 0 0.5rem 0' }}>
+
+              <h3 style={{
+                fontFamily: 'Bebas Neue, sans-serif',
+                fontSize: '2rem',
+                margin: '0 0 0.5rem 0',
+                letterSpacing: '1px',
+                color: '#fff',
+              }}>
                 {category.name}
               </h3>
-              <p style={{ margin: 0, color: '#666', fontSize: '0.95em' }}>
+
+              <p style={{
+                fontFamily: 'DM Sans, sans-serif',
+                margin: 0,
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontSize: '1rem',
+              }}>
                 {category.description}
               </p>
+
+              <div style={{
+                marginTop: '1.5rem',
+                color: '#00ff88',
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 700,
+                fontSize: '0.9rem',
+                letterSpacing: '1px',
+              }}>
+                EXPLORAR →
+              </div>
             </div>
           </Link>
         ))}
@@ -160,35 +369,143 @@ function CategoriesSection({
 
 function FeaturedProductsSection({
   products,
-  styles,
 }: {
   products: Array<{ id: string; name: string; price: string; icon: string }>
-  styles: any
 }) {
   return (
-    <section style={{ ...styles.section, backgroundColor: 'rgba(100, 108, 255, 0.03)' }}>
-      <h2 style={styles.sectionHeading}>Productos Destacados</h2>
-      <div style={styles.grid}>
-        {products.map((product) => (
-          <div key={product.id} style={styles.card}>
-            <div style={{ fontSize: '4em', margin: '0 0 1rem 0' }}>
+    <section style={{
+      padding: '6rem 2rem',
+      maxWidth: '1400px',
+      margin: '0 auto',
+      background: 'radial-gradient(ellipse at center, rgba(255, 107, 53, 0.08) 0%, transparent 70%)',
+    }}>
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '4rem',
+      }}>
+        <h2 style={{
+          fontFamily: 'Bebas Neue, sans-serif',
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          margin: '0 0 1rem 0',
+          letterSpacing: '2px',
+          background: 'linear-gradient(135deg, #ff6b35 0%, #00ff88 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}>
+          PRODUCTOS DESTACADOS
+        </h2>
+        <div style={{
+          width: '80px',
+          height: '4px',
+          background: 'linear-gradient(90deg, #ff6b35 0%, #00ff88 100%)',
+          margin: '0 auto',
+        }} />
+      </div>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+        gap: '2.5rem',
+      }}>
+        {products.map((product, index) => (
+          <div
+            key={product.id}
+            className={`animate-in-${(index % 3) + 1}`}
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 255, 136, 0.05) 100%)',
+              border: '2px solid rgba(255, 107, 53, 0.3)',
+              borderRadius: '24px',
+              padding: '2rem',
+              textAlign: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.4s ease',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-12px) rotate(-1deg)'
+              e.currentTarget.style.borderColor = '#ff6b35'
+              e.currentTarget.style.boxShadow = '0 25px 70px rgba(255, 107, 53, 0.4)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) rotate(0deg)'
+              e.currentTarget.style.borderColor = 'rgba(255, 107, 53, 0.3)'
+              e.currentTarget.style.boxShadow = 'none'
+            }}
+          >
+            <div style={{
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
+              padding: '0.4rem 1rem',
+              borderRadius: '20px',
+              fontSize: '0.75rem',
+              fontFamily: 'DM Sans, sans-serif',
+              fontWeight: 700,
+              letterSpacing: '1px',
+            }}>
+              DESTACADO
+            </div>
+
+            <div style={{
+              fontSize: '6rem',
+              margin: '2rem 0 1.5rem 0',
+              filter: 'drop-shadow(0 8px 20px rgba(255, 107, 53, 0.4))',
+            }}>
               {product.icon}
             </div>
-            <h3 style={{ fontSize: '1.3em', margin: '0 0 0.5rem 0' }}>
+
+            <h3 style={{
+              fontFamily: 'DM Sans, sans-serif',
+              fontSize: '1.4rem',
+              margin: '0 0 1rem 0',
+              fontWeight: 700,
+              color: '#fff',
+            }}>
               {product.name}
             </h3>
-            <p style={{ fontSize: '1.5em', fontWeight: 'bold', color: '#646cff', margin: '0.5rem 0 1rem 0' }}>
+
+            <p style={{
+              fontFamily: 'Bebas Neue, sans-serif',
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              background: 'linear-gradient(135deg, #ff6b35 0%, #00ff88 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              margin: '0 0 2rem 0',
+            }}>
               {product.price}
             </p>
+
             <Link
               to="/productos"
               style={{
-                color: '#646cff',
+                fontFamily: 'DM Sans, sans-serif',
+                display: 'inline-block',
+                padding: '1rem 2.5rem',
+                background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
+                color: '#fff',
+                borderRadius: '50px',
                 textDecoration: 'none',
-                fontWeight: 500,
+                fontWeight: 700,
+                fontSize: '0.95rem',
+                letterSpacing: '0.5px',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 6px 20px rgba(255, 107, 53, 0.4)',
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)'
+                e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 107, 53, 0.6)'
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
+                e.currentTarget.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.4)'
               }}
             >
-              Ver más →
+              VER PRODUCTO →
             </Link>
           </div>
         ))}
@@ -199,31 +516,90 @@ function FeaturedProductsSection({
 
 function BenefitsSection({
   benefits,
-  styles,
 }: {
   benefits: Array<{ icon: string; title: string; description: string }>
-  styles: any
 }) {
   return (
-    <section style={styles.section}>
-      <h2 style={styles.sectionHeading}>¿Por Qué Comprar con Nosotros?</h2>
-      <div style={styles.grid}>
+    <section id="beneficios" style={{
+      padding: '6rem 2rem',
+      maxWidth: '1400px',
+      margin: '0 auto',
+    }}>
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '4rem',
+      }}>
+        <h2 style={{
+          fontFamily: 'Bebas Neue, sans-serif',
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          margin: '0 0 1rem 0',
+          letterSpacing: '2px',
+          color: '#fff',
+        }}>
+          VENTAJAS EXCLUSIVAS
+        </h2>
+        <div style={{
+          width: '80px',
+          height: '4px',
+          background: 'linear-gradient(90deg, #ff6b35 0%, #00ff88 100%)',
+          margin: '0 auto',
+        }} />
+      </div>
+
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+        gap: '2rem',
+      }}>
         {benefits.map((benefit, index) => (
           <div
             key={index}
+            className={`animate-in-${(index % 4) + 1}`}
             style={{
-              ...styles.card,
-              border: 'none',
-              backgroundColor: 'rgba(100, 108, 255, 0.05)',
+              background: 'rgba(255, 255, 255, 0.02)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '16px',
+              padding: '2.5rem 1.5rem',
+              textAlign: 'center',
+              transition: 'all 0.3s ease',
+              backdropFilter: 'blur(10px)',
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'
+              e.currentTarget.style.borderColor = 'rgba(0, 255, 136, 0.5)'
+              e.currentTarget.style.transform = 'translateY(-5px)'
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)'
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+              e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
-            <div style={{ fontSize: '3em', margin: '0 0 1rem 0' }}>
+            <div style={{
+              fontSize: '3.5rem',
+              margin: '0 0 1.5rem 0',
+              filter: 'grayscale(0) brightness(1.2)',
+            }}>
               {benefit.icon}
             </div>
-            <h3 style={{ fontSize: '1.3em', margin: '0 0 0.5rem 0' }}>
+
+            <h3 style={{
+              fontFamily: 'Bebas Neue, sans-serif',
+              fontSize: '1.6rem',
+              margin: '0 0 0.8rem 0',
+              letterSpacing: '1px',
+              color: '#00ff88',
+            }}>
               {benefit.title}
             </h3>
-            <p style={{ margin: 0, color: '#666', fontSize: '0.95em' }}>
+
+            <p style={{
+              fontFamily: 'DM Sans, sans-serif',
+              margin: 0,
+              color: 'rgba(255, 255, 255, 0.7)',
+              fontSize: '1rem',
+              lineHeight: '1.5',
+            }}>
               {benefit.description}
             </p>
           </div>
@@ -233,34 +609,86 @@ function BenefitsSection({
   )
 }
 
-function CTASection({ styles }: { styles: any }) {
+function CTASection() {
   return (
     <section
       style={{
-        padding: '4rem 1rem',
+        padding: '8rem 2rem',
         textAlign: 'center',
-        borderTop: '2px solid #646cff',
-        backgroundColor: 'rgba(100, 108, 255, 0.03)',
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'radial-gradient(ellipse at center, rgba(0, 255, 136, 0.1) 0%, transparent 70%)',
       }}
     >
-      <h2 style={{ fontSize: '2.5em', margin: '0 0 1rem 0' }}>
-        ¿Listo para Empezar?
-      </h2>
-      <p style={{ fontSize: '1.2em', margin: '0 0 2rem 0', color: '#666' }}>
-        Explora nuestro catálogo completo de productos deportivos
-      </p>
-      <Link
-        to="/productos"
-        style={{
-          ...styles.button,
-          fontSize: '1.1em',
-          padding: '0.9em 2.5em',
-        }}
-        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#535bf2')}
-        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#646cff')}
-      >
-        Ver Todos los Productos
-      </Link>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '600px',
+        height: '600px',
+        background: 'radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(100px)',
+        animation: 'pulse 4s ease-in-out infinite',
+      }} />
+
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <h2 style={{
+          fontFamily: 'Bebas Neue, sans-serif',
+          fontSize: 'clamp(3rem, 8vw, 5rem)',
+          margin: '0 0 1.5rem 0',
+          letterSpacing: '3px',
+          background: 'linear-gradient(135deg, #fff 0%, #00ff88 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}>
+          ¿LISTO PARA DOMINAR?
+        </h2>
+
+        <p style={{
+          fontFamily: 'DM Sans, sans-serif',
+          fontSize: 'clamp(1.1rem, 2vw, 1.3rem)',
+          margin: '0 auto 3rem',
+          maxWidth: '600px',
+          color: 'rgba(255, 255, 255, 0.7)',
+          lineHeight: '1.6',
+        }}>
+          Únete a miles de atletas que han elevado su juego con nuestro equipamiento de élite
+        </p>
+
+        <Link
+          to="/productos"
+          style={{
+            fontFamily: 'DM Sans, sans-serif',
+            display: 'inline-block',
+            padding: '1.4rem 4rem',
+            fontSize: '1.2rem',
+            fontWeight: 700,
+            color: '#0a0e1a',
+            background: 'linear-gradient(135deg, #00ff88 0%, #00cc6a 100%)',
+            border: 'none',
+            borderRadius: '50px',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.4s ease',
+            boxShadow: '0 10px 40px rgba(0, 255, 136, 0.4)',
+            letterSpacing: '1px',
+            textTransform: 'uppercase',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.transform = 'translateY(-3px) scale(1.05)'
+            e.currentTarget.style.boxShadow = '0 15px 60px rgba(0, 255, 136, 0.6)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)'
+            e.currentTarget.style.boxShadow = '0 10px 40px rgba(0, 255, 136, 0.4)'
+          }}
+        >
+          Ver Catálogo Completo
+        </Link>
+      </div>
     </section>
   )
 }
